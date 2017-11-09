@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public void addUser(View view)
     {
         // Wanneer een user wordt toegevoegd tekst in beeld: "Running"
+        // Uploaden
         Toast.makeText(this,"Running", Toast.LENGTH_LONG).show();
 
         // Tekst krijgen uit de tekst en op een var zetten

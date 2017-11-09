@@ -10,8 +10,10 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class myDbAdapter {
+    // Helper maakt aan en voert uit
     myDbHelper helper;
 
+    // Instantieert een nieuwe dbadapter met context, context zorgt er voor dat je class kan communiceren met de database
     public myDbAdapter(Context context)
     {
         helper = new myDbHelper(context);
@@ -25,19 +27,22 @@ public class myDbAdapter {
         contentValues.put(UserContract.UserEntity.USER_NAME, name);
         contentValues.put(UserContract.UserEntity.USER_PWD, password);
 
+        // ID van de gebruiker
         long id = db.insert(UserContract.UserEntity.TABLE_NAME, null , contentValues);
 
         return id;
     }
 
-    // Database aanmaken
+
     static class myDbHelper extends SQLiteOpenHelper
     {
+        // Database aanmaken
         private static final String CREATE_TABLE = "CREATE TABLE "+ UserContract.UserEntity.TABLE_NAME +
                 "( "+ UserContract.UserEntity.UID +" INTEGER PRIMARY KEY AUTOINCREMENT ," + UserContract.UserEntity.USER_NAME + " VARCHAR(225), " + UserContract.UserEntity.USER_PWD+" VARCHAR(225));";
         private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+ UserContract.UserEntity.TABLE_NAME;
         private Context context;
 
+        // Maakt de tabel
         public myDbHelper(Context context) {
             super(context, UserContract.DATABASE_NAME, null, UserContract.DATABASE_VERSION);
             this.context=context;
